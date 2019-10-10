@@ -9,7 +9,7 @@ env:
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in learned-skill-255400-0fd6cd0a4051.json.enc -out learned-skill-255400-0fd6cd0a4051.json -d
-  - curl https://sdk.cloud.google.com/ | bash > /dev/null;
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file learned-skill-255400-0fd6cd0a4051.json
@@ -20,7 +20,7 @@ before_install:
   - docker build -t seifhussam/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run seifhussam/react-test npm run test -- --coverage
+  - docker run seifhussam/react-test npm test -- --coverage
 
 deploy:
   provider: script
